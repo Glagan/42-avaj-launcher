@@ -1,5 +1,7 @@
 package org.glagan.avaj.simulator;
 
+import org.glagan.avaj.simulator.Exceptions.InvalidWeather;
+
 public class Baloon extends Aircraft implements Flyable {
     private WeatherTower weatherTower;
 
@@ -33,7 +35,7 @@ public class Baloon extends Aircraft implements Flyable {
                     System.out.println(this.identifier() + ": Huh, I don't know if we're supposed to be here.");
                     break;
                 default:
-                    throw new Error("Invalid weather " + weather + ", making holes in the baloon.");
+                    throw new InvalidWeather(weather);
             }
             if (this.coordinates.getHeight() == 0) {
                 this.weatherTower.unregister(this);
