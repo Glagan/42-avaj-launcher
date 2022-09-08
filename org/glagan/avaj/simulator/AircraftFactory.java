@@ -6,7 +6,7 @@ public class AircraftFactory {
             return new Baloon(name, new Coordinates(longitude, latitude, height));
         } else if (type == "Helicopter") {
             return new Helicopter(name, new Coordinates(longitude, latitude, height));
-        } else if (type == "JetPlace") {
+        } else if (type == "JetPlane") {
             return new JetPlane(name, new Coordinates(longitude, latitude, height));
         }
         throw new Error("Invalid type " + type);

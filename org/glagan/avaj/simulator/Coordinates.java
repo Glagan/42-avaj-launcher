@@ -6,8 +6,32 @@ public class Coordinates {
     private int height;
 
     public Coordinates(int longitude, int latitude, int height) {
+        this.setLongitude(longitude);
+        this.setLatitude(latitude);
+        this.setHeight(height);
+    }
+
+    public int getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(int longitude) {
         this.longitude = longitude;
+    }
+
+    public int getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(int latitude) {
         this.latitude = latitude;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public void setHeight(int height) {
         if (height < 0) {
             this.height = 0;
         } else if (height > 100) {
@@ -15,29 +39,5 @@ public class Coordinates {
         } else {
             this.height = height;
         }
-    }
-
-    public int getLongitude() {
-        return longitude;
-    }
-
-    public int getLatitude() {
-        return latitude;
-    }
-
-    public int getHeight() {
-        return height;
-    }
-
-    public void setLongitude(int longitude) {
-        this.longitude = longitude;
-    }
-
-    public void setLatitude(int latitude) {
-        this.latitude = latitude;
-    }
-
-    public void setHeight(int height) {
-        this.height = height;
     }
 }

@@ -1,17 +1,23 @@
 package org.glagan.avaj.simulator;
 
-import java.util.List;
+import java.util.Random;
 
 public class WeatherProvider {
     static private WeatherProvider weatherProvider = new WeatherProvider();
-
-    private List<String> weather;
+    static private String[] weather = {
+            "SUN",
+            "RAIN",
+            "FOG",
+            "SNOW"
+    };
 
     public static WeatherProvider getProvider() {
         return weatherProvider;
     }
 
     public String getCurrentWeather(Coordinates coordinates) {
-        return "SUN";
+        Random random = new Random();
+        int index = random.nextInt(WeatherProvider.weather.length);
+        return WeatherProvider.weather[index];
     }
 }

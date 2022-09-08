@@ -21,8 +21,13 @@ public class Tower {
     }
 
     protected void conditionsChanged() {
-        for (Flyable flyable : observers) {
+        for (int i = 0; i < this.observers.size(); i++) {
+            int previousSize = this.observers.size();
+            Flyable flyable = this.observers.get(i);
             flyable.updateConditions();
+            if (this.observers.size() != previousSize) {
+                i -= 1;
+            }
         }
     }
 }
