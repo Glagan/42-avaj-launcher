@@ -20,19 +20,19 @@ public class JetPlane extends Aircraft implements Flyable {
                 case "SUN":
                     this.coordinates.setLatitude(this.coordinates.getLatitude() + 10);
                     this.coordinates.setHeight(this.coordinates.getHeight() + 2);
-                    System.out.println(this.identifier() + ": I can't feel the heat.");
+                    Output.write(this.identifier() + ": I can't feel the heat.");
                     break;
                 case "RAIN":
                     this.coordinates.setLatitude(this.coordinates.getLatitude() + 5);
-                    System.out.println(this.identifier() + ": We're going past that rain.");
+                    Output.write(this.identifier() + ": We're going past that rain.");
                     break;
                 case "FOG":
                     this.coordinates.setLatitude(this.coordinates.getLatitude() + 1);
-                    System.out.println(this.identifier() + ": I'm even more invisible.");
+                    Output.write(this.identifier() + ": I'm even more invisible.");
                     break;
                 case "SNOW":
                     this.coordinates.setHeight(this.coordinates.getHeight() + 7);
-                    System.out.println(this.identifier() + ": I just have to get higher.");
+                    Output.write(this.identifier() + ": I just have to get higher.");
                     break;
                 default:
                     throw new InvalidWeather(weather);
@@ -40,7 +40,7 @@ public class JetPlane extends Aircraft implements Flyable {
             if (this.coordinates.getHeight() == 0) {
                 this.weatherTower.unregister(this);
                 this.weatherTower = null;
-                System.out.println(this.identifier() + " landing at " + this.position());
+                Output.write(this.identifier() + " landing at " + this.position());
             }
         }
     }

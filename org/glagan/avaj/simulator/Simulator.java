@@ -2,6 +2,7 @@ package org.glagan.avaj.simulator;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -74,9 +75,22 @@ public class Simulator {
             return;
         }
 
+        try {
+            Output.open();
+        } catch (FileNotFoundException e) {
+            System.out.println("Failed to open output file");
+            return;
+        }
+
         Scenario scenario = Simulator.parseFile(args[0]);
         if (scenario != null) {
             scenario.run();
+        }
+
+        try {
+            Output.close();
+        } catch (IOException e) {
+            System.out.println("Failed to close output file");
         }
     }
 }

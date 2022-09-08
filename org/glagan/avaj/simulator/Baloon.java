@@ -20,19 +20,19 @@ public class Baloon extends Aircraft implements Flyable {
                 case "SUN":
                     this.coordinates.setLongitude(this.coordinates.getLongitude() + 2);
                     this.coordinates.setHeight(this.coordinates.getHeight() + 4);
-                    System.out.println(this.identifier() + ": We're getting close Icarus.");
+                    Output.write(this.identifier() + ": We're getting close Icarus.");
                     break;
                 case "RAIN":
                     this.coordinates.setHeight(this.coordinates.getHeight() + 5);
-                    System.out.println(this.identifier() + ": I thinks it's raining.");
+                    Output.write(this.identifier() + ": I thinks it's raining.");
                     break;
                 case "FOG":
                     this.coordinates.setHeight(this.coordinates.getHeight() - 3);
-                    System.out.println(this.identifier() + ": I can't see sh*t in this mist.");
+                    Output.write(this.identifier() + ": I can't see sh*t in this mist.");
                     break;
                 case "SNOW":
                     this.coordinates.setHeight(this.coordinates.getHeight() - 15);
-                    System.out.println(this.identifier() + ": Huh, I don't know if we're supposed to be here.");
+                    Output.write(this.identifier() + ": Huh, I don't know if we're supposed to be here.");
                     break;
                 default:
                     throw new InvalidWeather(weather);
@@ -40,7 +40,7 @@ public class Baloon extends Aircraft implements Flyable {
             if (this.coordinates.getHeight() == 0) {
                 this.weatherTower.unregister(this);
                 this.weatherTower = null;
-                System.out.println(this.identifier() + " landing at " + this.position());
+                Output.write(this.identifier() + " landing at " + this.position());
             }
         }
     }

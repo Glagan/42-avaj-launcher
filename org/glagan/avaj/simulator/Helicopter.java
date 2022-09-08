@@ -21,19 +21,19 @@ public class Helicopter extends Aircraft implements Flyable {
                 case "SUN":
                     this.coordinates.setLongitude(this.coordinates.getLongitude() + 10);
                     this.coordinates.setHeight(this.coordinates.getHeight() + 2);
-                    System.out.println(this.identifier() + ": What a beautiful weather Johnson.");
+                    Output.write(this.identifier() + ": What a beautiful weather Johnson.");
                     break;
                 case "RAIN":
                     this.coordinates.setLongitude(this.coordinates.getLongitude() + 5);
-                    System.out.println(this.identifier() + ": I love slicing rain drops.");
+                    Output.write(this.identifier() + ": I love slicing rain drops.");
                     break;
                 case "FOG":
                     this.coordinates.setLongitude(this.coordinates.getLongitude() + 1);
-                    System.out.println(this.identifier() + ": Pray to god that we don't hit something.");
+                    Output.write(this.identifier() + ": Pray to god that we don't hit something.");
                     break;
                 case "SNOW":
                     this.coordinates.setLongitude(this.coordinates.getHeight() + 12);
-                    System.out.println(this.identifier() + ": Johnson, I lost control, sorry.");
+                    Output.write(this.identifier() + ": Johnson, I lost control, sorry.");
                     break;
                 default:
                     throw new InvalidWeather(weather);
@@ -41,7 +41,7 @@ public class Helicopter extends Aircraft implements Flyable {
             if (this.coordinates.getHeight() == 0) {
                 this.weatherTower.unregister(this);
                 this.weatherTower = null;
-                System.out.println(this.identifier() + " landing at " + this.position());
+                Output.write(this.identifier() + " landing at " + this.position());
             }
         }
     }
