@@ -16,7 +16,6 @@ public class Simulator {
         boolean sawIterations = false;
         Scenario scenario = null;
         List<Flyable> aircrafts = new ArrayList<Flyable>();
-        AircraftFactory factory = new AircraftFactory();
 
         try {
             Scanner scanner = new Scanner(new File(path));
@@ -40,7 +39,7 @@ public class Simulator {
                         return null;
                     }
                     aircraftScanner.close();
-                    aircrafts.add(factory.newAircraft(type, name, longitude, latitude, height));
+                    aircrafts.add(AircraftFactory.newAircraft(type, name, longitude, latitude, height));
                 }
             }
             scanner.close();
