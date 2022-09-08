@@ -12,7 +12,7 @@ public class WeatherTower extends Tower {
     }
 
     public String getWeather(Coordinates coordinates) {
-        for (WeatherCoordinates weatherCoordinates : coordinatesWeather) {
+        for (WeatherCoordinates weatherCoordinates : this.coordinatesWeather) {
             if (weatherCoordinates.getCoordinates().getLongitude() == coordinates.getLongitude() &&
                     weatherCoordinates.getCoordinates().getLatitude() == coordinates.getLatitude() &&
                     weatherCoordinates.getCoordinates().getHeight() == coordinates.getHeight()) {

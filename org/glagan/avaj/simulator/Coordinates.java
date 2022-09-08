@@ -40,4 +40,8 @@ public class Coordinates {
             this.height = height;
         }
     }
+
+    public Coordinates clone() {
+        return new Coordinates(this.longitude, this.latitude, this.height);
+    }
 }
