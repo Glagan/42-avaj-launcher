@@ -34,6 +34,11 @@ public class Simulator {
                     int longitude = aircraftScanner.nextInt();
                     int latitude = aircraftScanner.nextInt();
                     int height = aircraftScanner.nextInt();
+                    if (aircraftScanner.hasNext()) {
+                        aircraftScanner.close();
+                        System.out.println("Invalid remaining data after an aircraft declaration");
+                        return null;
+                    }
                     aircraftScanner.close();
                     aircrafts.add(factory.newAircraft(type, name, longitude, latitude, height));
                 }
