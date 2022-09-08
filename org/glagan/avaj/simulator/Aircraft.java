@@ -20,11 +20,10 @@ public class Aircraft {
 
     public String position() {
         return this.coordinates.getLatitude() + "," + this.coordinates.getLongitude();
-        // + ":" + this.coordinates.getHeight()
     }
 
     public boolean weatherChanged(String weather) {
-        boolean changed = this.previousWeather != weather;
+        boolean changed = !this.previousWeather.equals(weather);
         if (changed) {
             this.previousWeather = weather;
         }

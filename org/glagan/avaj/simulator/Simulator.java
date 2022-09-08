@@ -1,23 +1,66 @@
 package org.glagan.avaj.simulator;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Scanner;
+
 public class Simulator {
+
+    private static Scenario parseFile(String path) {
+        boolean sawIterations = false;
+        List<Flyable> aircrafts = new ArrayList<Flyable>();
+        try {
+            Scenario scenario = null;
+            AircraftFactory factory = new AircraftFactory();
+            Scanner scanner = new Scanner(new File(path));
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+                if (!sawIterations) {
+                    int iterations = Integer.parseInt(line);
+                    scenario = new Scenario(iterations);
+                    sawIterations = true;
+                } else {
+                    Scanner aircraftScanner = new Scanner(line);
+                    aircraftScanner.useDelimiter(" ");
+                    String type = aircraftScanner.next();
+                    String name = aircraftScanner.next();
+                    int longitude = aircraftScanner.nextInt();
+                    int latitude = aircraftScanner.nextInt();
+                    int height = aircraftScanner.nextInt();
+                    aircraftScanner.close();
+                    aircrafts.add(factory.newAircraft(type, name, longitude, latitude, height));
+                }
+            }
+            scanner.close();
+
+            // Only register aircrafts at the end to avoid generating output on error
+            for (Flyable flyable : aircrafts) {
+                scenario.registerAircraft(flyable);
+            }
+
+            return scenario;
+        } catch (NoSuchElementException e) {
+            System.out.println("Invalid Aircraft format in scenario file");
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid number in scenario file");
+        } catch (FileNotFoundException e) {
+            System.out.println("Scenario file not found");
+        }
+        return null;
+    }
+
     public static void main(String[] args) {
-        int iterations = 25;
+        if (args.length < 1) {
+            System.out.println("Missing required scenario file path");
+            return;
+        }
 
-        WeatherTower weatherTower = new WeatherTower();
-        AircraftFactory factory = new AircraftFactory();
-        factory.newAircraft("Baloon", "B1", 2, 3, 20).registerTower(weatherTower);
-        factory.newAircraft("Baloon", "B2", 1, 8, 66).registerTower(weatherTower);
-        factory.newAircraft("JetPlane", "J1", 23, 44, 32).registerTower(weatherTower);
-        factory.newAircraft("Helicopter", "H1", 654, 33, 20).registerTower(weatherTower);
-        factory.newAircraft("Helicopter", "H2", 22, 33, 44).registerTower(weatherTower);
-        factory.newAircraft("Helicopter", "H3", 98, 68, 99).registerTower(weatherTower);
-        factory.newAircraft("Baloon", "B3", 102, 22, 34).registerTower(weatherTower);
-        factory.newAircraft("JetPlane", "J2", 11, 99, 768).registerTower(weatherTower);
-        factory.newAircraft("Helicopter", "H4", 223, 23, 54).registerTower(weatherTower);
-
-        for (int i = 0; i < iterations; i++) {
-            weatherTower.changeWeather();
+        Scenario scenario = Simulator.parseFile(args[0]);
+        if (scenario != null) {
+            scenario.run();
         }
     }
 }
