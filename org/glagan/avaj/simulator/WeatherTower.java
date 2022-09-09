@@ -23,7 +23,7 @@ public class WeatherTower extends Tower {
 
         WeatherProvider provider = WeatherProvider.getProvider();
         String weather = provider.getCurrentWeather(coordinates);
-        this.coordinatesWeather.add(new WeatherCoordinates(coordinates, weather));
+        this.coordinatesWeather.add(new WeatherCoordinates(coordinates.clone(), weather));
         return weather;
     }
 

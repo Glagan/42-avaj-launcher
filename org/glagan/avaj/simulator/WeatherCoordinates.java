@@ -5,7 +5,7 @@ public class WeatherCoordinates {
     private String weather;
 
     public WeatherCoordinates(Coordinates coordinates, String weather) {
-        this.coordinates = coordinates.clone();
+        this.coordinates = coordinates;
         this.weather = weather;
     }
 
@@ -13,16 +13,7 @@ public class WeatherCoordinates {
         return coordinates;
     }
 
-    public void setCoordinates(Coordinates coordinates) {
-        this.coordinates = coordinates;
-    }
-
     public String getWeather() {
         return weather;
     }
-
-    public void setWeather(String weather) {
-        this.weather = weather;
-    }
-
 }
