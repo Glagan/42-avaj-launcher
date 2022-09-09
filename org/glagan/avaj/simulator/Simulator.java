@@ -13,7 +13,7 @@ import org.glagan.avaj.simulator.Exceptions.InvalidAircraftType;
 
 public class Simulator {
 
-    private static Flyable parseAircraftFromLine(String line) throws InvalidAircraftDefinition {
+    private static Flyable parseAircraftFromLine(String line) throws InvalidAircraftType, InvalidAircraftDefinition {
         Flyable aircraft = null;
         Scanner aircraftScanner = new Scanner(line);
         aircraftScanner.useDelimiter(" ");
@@ -41,6 +41,8 @@ public class Simulator {
             } else {
                 throw new InvalidAircraftDefinition("Invalid remaining data after an aircraft declaration");
             }
+        } catch (InvalidAircraftType e) {
+            throw e;
         } catch (InvalidAircraftDefinition e) {
             throw e;
         } finally {
@@ -72,20 +74,20 @@ public class Simulator {
             }
 
             if (!sawIterations) {
-                throw new Error("Missing iterations count in scenario file");
+                throw new Exception("Missing iterations count in scenario file");
             }
 
             if (aircrafts.size() == 0) {
-                throw new Error("No aircrafts in scenario file");
+                throw new Exception("No aircrafts in scenario file");
             }
 
             // Only register aircrafts at the end to avoid generating output on error
             for (Flyable flyable : aircrafts) {
                 scenario.registerAircraft(flyable);
             }
-        } catch (InvalidAircraftDefinition e) {
-            System.out.println(e.getMessage());
         } catch (InvalidAircraftType e) {
+            System.out.println(e.getMessage());
+        } catch (InvalidAircraftDefinition e) {
             System.out.println(e.getMessage());
         } catch (NoSuchElementException e) {
             System.out.println("Invalid Aircraft format in scenario file");

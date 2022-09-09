@@ -3,7 +3,8 @@ package org.glagan.avaj.simulator;
 import org.glagan.avaj.simulator.Exceptions.InvalidAircraftType;
 
 public class AircraftFactory {
-    static public Flyable newAircraft(String type, String name, int longitude, int latitude, int height) {
+    static public Flyable newAircraft(String type, String name, int longitude, int latitude, int height)
+            throws InvalidAircraftType {
         if (type.equals("Baloon")) {
             return new Baloon(name, new Coordinates(longitude, latitude, height));
         } else if (type.equals("Helicopter")) {

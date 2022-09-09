@@ -1,6 +1,6 @@
 package org.glagan.avaj.simulator.Exceptions;
 
-public class InvalidAircraftType extends Error {
+public class InvalidAircraftType extends Exception {
     public String invalidType;
 
     public InvalidAircraftType(String invalidType) {

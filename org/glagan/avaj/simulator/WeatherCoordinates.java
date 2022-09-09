@@ -16,4 +16,5 @@ public class WeatherCoordinates {
     public String getWeather() {
         return weather;
     }
+
 }

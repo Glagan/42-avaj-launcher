@@ -1,7 +1,5 @@
 package org.glagan.avaj.simulator;
 
-import org.glagan.avaj.simulator.Exceptions.InvalidWeather;
-
 public class Helicopter extends Aircraft implements Flyable {
     private WeatherTower weatherTower;
 
@@ -36,7 +34,7 @@ public class Helicopter extends Aircraft implements Flyable {
                     Output.write(this.identifier() + ": Johnson, I lost control, sorry.");
                     break;
                 default:
-                    throw new InvalidWeather(weather);
+                    System.out.println("Invalid weather " + weather);
             }
             if (this.coordinates.getHeight() == 0) {
                 this.weatherTower.unregister(this);
