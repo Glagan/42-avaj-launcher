@@ -24,9 +24,7 @@ public class Aircraft {
 
     public boolean weatherChanged(String weather) {
         boolean changed = !this.previousWeather.equals(weather);
-        if (changed) {
-            this.previousWeather = weather;
-        }
+        this.previousWeather = weather;
         return changed;
     }
 

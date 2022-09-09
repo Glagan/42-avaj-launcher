@@ -12,6 +12,7 @@ public class WeatherTower extends Tower {
     }
 
     public String getWeather(Coordinates coordinates) {
+        // Check if the weather for the given coordinates where already computed
         for (WeatherCoordinates weatherCoordinates : this.coordinatesWeather) {
             if (weatherCoordinates.getCoordinates().getLongitude() == coordinates.getLongitude() &&
                     weatherCoordinates.getCoordinates().getLatitude() == coordinates.getLatitude() &&
